@@ -15,11 +15,11 @@ If you run into rate limits, consider changing the Overpass Turbo server in your
 
 ## Links to queries
 ### General POI scanner
-Map center: https://overpass-turbo.eu/s/2s6D
-Fixed coordinates: https://overpass-turbo.eu/s/2s6F
+* Map center: https://overpass-turbo.eu/s/2s6D
+* Fixed coordinates: https://overpass-turbo.eu/s/2s6F
 
 ### Bench scanner
-Map center: https://overpass-turbo.eu/s/2s6K
-Fixed coordinates: https://overpass-turbo.eu/s/2s6I
-Map center without bus stops: https://overpass-turbo.eu/s/2s6O
-Fixed coordinates without bus stops: https://overpass-turbo.eu/s/2s6M
+* Map center: https://overpass-turbo.eu/s/2s6K
+* Fixed coordinates: https://overpass-turbo.eu/s/2s6I
+* Map center without bus stops: https://overpass-turbo.eu/s/2s6O
+* Fixed coordinates without bus stops: https://overpass-turbo.eu/s/2s6M
