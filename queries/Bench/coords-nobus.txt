@@ -1,0 +1,93 @@
+[out:json][timeout:1200];
+
+// Settings
+// Radius is in meters.
+// {{radius_m=10000}}
+// {{coords=10.000000,20.000000}}
+
+// Broad bench-related candidate scan
+// Bus stop / bus platform results excluded.
+// Area: {{radius_m}} m around {{coords}}
+
+(
+  // Standalone benches
+  nwr["amenity"="bench"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Memorial benches, including cases not tagged as amenity=bench
+  nwr["memorial"="bench"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["historic"="memorial"]["memorial"="bench"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Benches with memorial/inscription/name-style metadata
+  nwr["amenity"="bench"]["memorial"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["amenity"="bench"]["inscription"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["amenity"="bench"]["inscription:url"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["amenity"="bench"]["openbenches:id"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["amenity"="bench"]["name"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Features that have an associated bench, e.g. shelters, platforms, viewpoints, etc.
+  // Excludes bench=no and bus-stop-ish objects.
+  nwr["bench"]["bench"!="no"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Chat benches / special initiative benches
+  nwr["chat_bench"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["initiative"~"bench|chat_bench|plauderbank|mitfahr",i]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Ride-sharing / hitchhiking benches, common in German-speaking areas
+  nwr["highway"="hitchhiking"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["highway"="hitchhiking"]["bench"!="no"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Picnic tables / tables with benches
+  nwr["leisure"="picnic_table"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["picnic_table"]["picnic_table"!="no"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  // Very broad seating metadata.
+  nwr["backrest"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["seats"]
+    ["bus"!="yes"]["highway"!="bus_stop"]["public_transport"!="platform"]["public_transport"!="stop_position"]
+    (around:{{radius_m}},{{coords}});
+);
+
+out body center;
+>;
+out skel qt;

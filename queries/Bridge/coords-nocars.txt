@@ -1,0 +1,49 @@
+[out:json][timeout:1200];
+
+// Settings
+// Radius is in meters.
+// {{radius_m=10000}}
+// {{coords=10.000000,20.000000}}
+
+// Foot and cycling bridge scanner
+// Area: {{radius_m}} m around {{coords}}
+//
+// Focuses on bridges usable by pedestrians and/or cyclists.
+// Manual Wayfarer review is still required.
+
+(
+  // Pedestrian / cycle / path bridges
+  way["bridge"]["bridge"!="no"]["highway"~"^(footway|path|cycleway|pedestrian|steps|bridleway)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Foot/cycle bridge relations, if mapped as relations
+  relation["bridge"]["bridge"!="no"]["highway"~"^(footway|path|cycleway|pedestrian|steps|bridleway)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Any bridge explicitly tagged as accessible by foot
+  nwr["bridge"]["bridge"!="no"]["foot"~"^(yes|designated|permissive|official)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Any bridge explicitly tagged as accessible by bicycle
+  nwr["bridge"]["bridge"!="no"]["bicycle"~"^(yes|designated|permissive|official)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Dedicated bridge structures with foot/bicycle access tags
+  nwr["man_made"="bridge"]["foot"~"^(yes|designated|permissive|official)$"]
+    (around:{{radius_m}},{{coords}});
+
+  nwr["man_made"="bridge"]["bicycle"~"^(yes|designated|permissive|official)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Named pedestrian/cycle/path bridges
+  way["bridge"]["bridge"!="no"]["name"]["highway"~"^(footway|path|cycleway|pedestrian|steps|bridleway)$"]
+    (around:{{radius_m}},{{coords}});
+
+  // Bridges with bridge:name and pedestrian/cycle/path highway type
+  way["bridge:name"]["highway"~"^(footway|path|cycleway|pedestrian|steps|bridleway)$"]
+    (around:{{radius_m}},{{coords}});
+);
+
+out body center;
+>;
+out skel qt;
