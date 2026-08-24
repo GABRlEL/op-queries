@@ -44,3 +44,10 @@ This scanner looks for the following features:
 #### Foot & cycling bridges only
 * 10 km radius map center without car bridges: https://overpass-turbo.eu/s/2ubt
 * 10 km radius fixed coordinates without car bridges: https://overpass-turbo.eu/s/2ubr
+
+### Beach scanner
+#### Beach & coastline
+*The primary purpose of this query is to find potential spawn spots for Wiglett. However this can also be used to identify swimming areas, which can be a great place to socialize or exercise aswell. I am aware that there's a rumor/potential observations that golf bunkers may also could as areas where Pokémon like Wiglett can spawn - I didn't include those since I couldn't find a confirmed source and it shouldn't be hard to find a golf course I suppose.*
+* Map center: https://overpass-turbo.eu/s/2vcW
+* Fixed coordinates: https://overpass-turbo.eu/s/2vcY
+
